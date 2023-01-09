@@ -1,0 +1,69 @@
+﻿@using _2StepsForwardFoundation.Models
+@model Email
+
+@{
+    ViewBag.Title = "Contact";
+}
+<h2>@ViewBag.Title</h2>
+
+<address>
+    2 Steps Forward Foundation<br />
+    P.O. Box 481143<br />
+    Charlotte, NC 28269<br />
+    <abbr title="Phone">P:</abbr>
+    704-565-9082
+</address>
+
+<address>
+    <strong>Email:   </strong><a href="mailto:contact@2stepsforwardfoundation.com">contact@2stepsforwardfoundation.com</a><br />
+</address>
+@{  var emailSuccess = TempData["EmailSuccess"];
+    if (emailSuccess != null)
+    {
+        <div class="alert alert-success">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>@emailSuccess</strong>
+        </div>
+    }
+}
+<button type="button" id="composeEmailButton">Compose Email</button>
+<br />
+<div id="composeEmailForm" style="display: none;">
+    @Html.Partial("_EmailForm", Model)
+</div>
+<br />
+<div class="float-right">
+    Website created by Steven Yip<br />
+    For inquiries please email <a href="mailto:skyip03@hotmail.com">skyip03@hotmail.com</a>
+</div>
+<div id="divLoading">
+    <img class="ajax-loader" src="~/Content/Images/ajax-loader.gif" alt="Loading, please wait" />
+</div>
+<br />
+@Scripts.Render("~/bundles/jqueryunobtrusive")
+<script type="text/javascript">
+    $(function () {
+        var composeEmailButton = $('#composeEmailButton');
+        composeEmailButton.on('click', function (e) {
+            $(".alert").alert('close');
+            composeEmailButton.fadeOut('fast', function () {
+                $('#composeEmailForm').fadeIn('slow');
+            })
+        });
+    });
+
+    function onBegin() {
+        $('#composeEmailForm').hide();
+        $("#divLoading").show();
+    };
+    function onSuccess(result) {
+        $('#composeEmailForm').show();
+        $("#divLoading").hide();
+
+        if (result.redirectTo) {
+            window.location.href = result.redirectTo;
+        } else {
+            $('#emailForm').html(result);
+        }
+    };
+</script>

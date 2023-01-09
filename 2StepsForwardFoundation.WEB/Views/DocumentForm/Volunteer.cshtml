@@ -1,0 +1,62 @@
+﻿@using _2StepsForwardFoundation.Models
+@model Volunteer
+
+@{
+    ViewBag.Title = "Volunteer";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+        Do you want to donate to our foundation? Do so by volunteering! The 2 Steps Forward Foundation is always looking for volunteers. 
+    Whether you have experience in event planning, administrative skills, or just have free time and want to serve the community. 
+    We are always on the lookout for diligent people willing to go the extra mile. Please fill out our volunteer form below. 
+    On behalf of the 2 Steps Forward Foundation we thank you for your commitment to our community! 
+    <br /><br />
+    Please complete the volunteer form to be reviewed for consideration. Thanks!
+</p>
+@{  var volunteerSuccess = TempData["VolunteerSuccess"];
+    if (volunteerSuccess != null)
+    {
+        <div class="alert alert-success">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>@volunteerSuccess</strong>
+        </div>
+    }
+}
+<button type="button" id="startVolunteerFormButton">Start Online</button>
+<div id="volunteerForm" style="display: none;">
+    @Html.Partial("_VolunteerForm", Model)
+</div>
+<div id="divLoading">
+    <img class="ajax-loader" src="~/Content/Images/ajax-loader.gif" alt="Loading, please wait" />
+</div>
+
+@Scripts.Render("~/bundles/jqueryunobtrusive")
+<script type="text/javascript">
+    $(function () {
+        var startVolunteerFormButton = $('#startVolunteerFormButton');
+        startVolunteerFormButton.on('click', function (e) {
+            $(".alert").alert('close');
+            startVolunteerFormButton.fadeOut('fast', function () {
+                $('#volunteerForm').fadeIn('slow');
+            })
+        });
+    });
+
+    function onBegin() {
+        $('#volunteerForm').hide();
+        $("#divLoading").show();
+    };
+    function onSuccess(result) {
+        $('#volunteerForm').show();
+        $("#divLoading").hide();
+
+        if (result.redirectTo) {
+            window.location.href = result.redirectTo;
+        } else {
+            $('#volunteerForm').html(result);
+        }
+    };
+</script>
+

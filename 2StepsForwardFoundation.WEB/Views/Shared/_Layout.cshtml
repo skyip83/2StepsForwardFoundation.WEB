@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @RenderSection("HeadMeta", required: false)
+    <title>@ViewBag.Title - 2 Steps Forward Foundation</title>
+    <META name="keywords" content="charity,charlotte,financial,assistance">
+    <META name="description" content="Charlotte Charity to Provide Financial Assistance to Working Families">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Html.Partial("~/Views/Shared/_GoogleAnalytics.cshtml")
+    @RenderSection("SlickCss", required: false)
+</head>
+<body>
+    <div id="navHeader" class="navbar navbar-default navbar-custom navbar-fixed-top body-content">
+        <div class="navbar-inner">
+            <div class="container">
+                <div class="navbar-header">
+                    <button id="navbar-toggle-button" type="button" class="navbar-toggle">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @*@Html.ActionLink("2 Steps Forward Foundation", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+                </div>
+                <div id="navigation" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About Us", "About", "Home")</li>
+                        <li>@Html.ActionLink("Donate", "Donate", "Home")</li>
+                        <li>@Html.ActionLink("Volunteer", "Volunteer", "DocumentForm")</li>
+                        <li>@Html.ActionLink("Events", "Events", "Home")</li>
+                        <li>@Html.ActionLink("Need Assistance", "Application", "DocumentForm")</li>
+                        <li>@Html.ActionLink("Resources", "Resources", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Email")</li>
+                        <li>@Html.ActionLink("Subscribe", "Subscribe", "Email")</li>
+                    </ul>
+                    @*@Html.Partial("_LoginPartial")*@
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.Partial("~/Views/Shared/_FooterLinks.cshtml")
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="float-left">&copy; @DateTime.Now.Year - 2 Steps Forward Foundation</p>
+                    @Html.Partial("~/Views/Shared/_SocialMedia.cshtml")
+                </div>
+            </div>
+        </footer>
+    </div>
+    <a href="#" class="back-to-top">Back to Top</a>
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/sidr")
+    @RenderSection("scripts", required: false)
+    @RenderSection("SlickScript", required: false)
+    <script>
+        $(document).ready(function () {
+            $('#navbar-toggle-button').sidr({
+                name: 'menuNav',
+                source: '#navigation'
+            });
+
+            var backToTop = $('a.back-to-top');
+            var amountScrolled = 300;
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > amountScrolled) {
+                    backToTop.fadeIn('slow');
+                } else {
+                    backToTop.fadeOut('slow');
+                }
+            });
+            backToTop.click(function () {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 700);
+                return false;
+            });
+        });
+
+        var user_agent = navigator.userAgent.toLowerCase(); // detect the user agent
+        var ios_devices = user_agent.match(/(iphone|ipod|ipad)/) ? "touchstart" : "click"; //check if the devices are ios devices
+        $(document).on(ios_devices, function (event) {
+            if ($('.sidr-open.menuNav-open').length > 0 && !$(event.target).closest('#menuNav').length) {
+                $.sidr('close', 'menuNav');
+            }
+        });
+    </script>
+</body>
+</html>

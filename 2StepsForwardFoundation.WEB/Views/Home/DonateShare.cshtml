@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Thank you for donating!";
+    Layout = null;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<a href="@Url.Action("Index","Home")">
+    <img src="@Url.Content("~/Content/Images/2 Steps Forward Official Logo.png")" height="77" width="122" />
+</a>
+<p>
+    I just donated to 2 Steps Forward Foundation to help working families in financial crisis.
+    You can donate as well at <a href="@Url.Action("Index","Home")">www.2stepsforwardfoundation.com</a>!
+</p>
+

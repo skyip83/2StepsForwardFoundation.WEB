@@ -1,0 +1,121 @@
+﻿@using _2StepsForwardFoundation.Models
+@model Application
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>2 Steps Forward - Application for Assistance</title>
+</head>
+<body>
+    <strong>Application for Assistance</strong>
+    <table>
+        <tr class="float-left">
+            <th>
+                Name (First Middle Last): @Model.FirstName @Model.MiddleName @Model.LastName
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                Street Address Line 1: @Model.Address
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                Street Address Line 2: @Model.Address2
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                City: @Model.City
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                State: @Model.State
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                Zip Code: @Model.Zip
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                E-Mail: @Model.Email
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                Home/Cell Phone: @Model.PhoneNumber
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                Place of employment: @Model.PlaceOfEmployment
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                Total annual household income (include all sources of income): $@Model.TotalIncome
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                Amount needed: $@Model.AmountNeeded
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                Have you ever applied for assistance with 2 Steps Forward Foundation? @(Model.AppliedBefore == true ? "YES" : "NO")
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                Was assistance provided? @(Model.AssistanceProvided == true ? "YES" : "NO")
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                Bill requesting payment for: @Model.BillRequestingPayment
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                Do you receive any type of government assistance (if so list): @(Model.GovernmentAssistance == true ? "YES" : "NO")
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                Details: @Model.GovernmentAssistanceDetails
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                Other assistance applied for: @Model.OtherAssistanceAppliedDetails
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                Names & Ages of household members: 
+            </th>
+            <th>@Model.HouseholdMemberNameAge1</th>
+            <th>@Model.HouseholdMemberNameAge2</th>
+            <th>@Model.HouseholdMemberNameAge3</th>
+            <th>@Model.HouseholdMemberNameAge4</th>
+            <th>@Model.HouseholdMemberNameAge5</th>
+            <th>@Model.HouseholdMemberNameAge6</th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                Please explain your need for assistance below: @Model.AssistanceNeedExplanation
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                Are there any other factors we should consider in reviewing your application? @Model.OtherFactorsToReview
+            </th>
+        </tr>
+    </table>
+</body>
+</html>  

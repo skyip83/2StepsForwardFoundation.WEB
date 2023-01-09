@@ -1,0 +1,54 @@
+﻿@using _2StepsForwardFoundation.Models
+@model EmailingList
+
+@{
+    ViewBag.Title = "Subscribe";
+}
+<h2>@ViewBag.Title</h2>
+<p>Please subscribe to our emailing list for news and updates. Thanks!</p>
+
+@{  var subscribeSuccess = TempData["Success"];
+    if (subscribeSuccess != null)
+    {
+        <div class="alert alert-success">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>@subscribeSuccess</strong>
+        </div>
+    }
+    var subscribeError = TempData["Error"];
+    if (subscribeError != null)
+    {
+        <div class="alert alert-danger">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>@subscribeError</strong>
+        </div>
+    }
+}
+@using (Html.BeginForm("Subscribe", "Email", FormMethod.Post, new { role = "form" }))
+{
+    <div id="subscribeEmailContainer">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-1 control-label" })
+            <div class="col-md-3">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @alt = "Email" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-6">
+                <input type="submit" class="btn btn-primary" value="Subscribe" style="margin-right:10px" />
+                <input id="unsubscribeButton" type="button" class="btn btn-link" value="Unsubscribe" />
+            </div>
+        </div>
+    </div>
+    <br /><br />
+}
+
+<script type="text/javascript">
+    $(function () {
+        $('#unsubscribeButton').on('click', function () {
+            $.post("/Email/Unsubscribe", $('form').serializeArray(), function (data) {
+                location = data.url;
+            });
+        });
+    });
+</script>
+

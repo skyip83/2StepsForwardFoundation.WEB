@@ -1,0 +1,36 @@
+﻿@section HeadMeta {
+    <meta property="og:url" content="http://www.2stepsforwardfoundation.com/Home/DonateShare" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="2 Steps Forward Foundation" />
+    <meta property="og:description" content="Thank you for donating!" />
+    <meta property="og:image" content="http://www.2stepsforwardfoundation.com/Content/Images/2%20Steps%20Forward%20Official%20Logo.png" />
+}
+
+@{
+    ViewBag.Title = "Thank you for donating!";
+}
+
+<h2>Donation Successful</h2>
+
+<p>Thank you for donating to the 2 Steps Forward Foundation! Your donation has been processed and a receipt for your donation has been emailed to you. 
+    You may log into your account at <a href="https://www.paypal.com/us" target="_blank">www.paypal.com/us</a> to view details of this transaction.
+    Your donation will help provide financial grants to working families in financial crisis. 
+    Please visit our Events page if you would like to be involved in our events or volunteer opportunities.</p>
+<p class="float-left">Share your good deed to inspire others to give: </p>
+<div class="fb-share-button float-left" data-href="http://www.2stepsforwardfoundation.com/Home/DonateShare" data-layout="button" style="margin:0 20px 0 20px;"></div>
+<div class="float-left">
+    <a href="https://twitter.com/share" class="twitter-share-button" {count} data-url="http://www.2stepsforwardfoundation.com/Home/DonateShare">Tweet</a>
+</div>
+
+<div id="fb-root"></div>
+<script>
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');
+</script>

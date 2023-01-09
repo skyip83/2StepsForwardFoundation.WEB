@@ -1,0 +1,95 @@
+﻿@using _2StepsForwardFoundation.Models
+@model Volunteer
+
+@{
+    var volunteerError = TempData["VolunteerError"];
+    if (volunteerError != null)
+    {
+        <div class="alert alert-danger">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>@volunteerError</strong>
+        </div>
+    }
+}
+@using (Ajax.BeginForm("SubmitVolunteer", "DocumentForm", null, new AjaxOptions { HttpMethod = "Post", OnBegin = "onBegin", OnSuccess = "onSuccess" }, new { @id = "volunteerForm" }))
+{
+    <div class="form-group">
+        <div class="row">
+            @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @alt = "First Name" })
+                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(m => m.MiddleName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control", @alt = "Middle Name" })
+                @Html.ValidationMessageFor(m => m.MiddleName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @alt = "Last Name" })
+                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.Address, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @alt = "Address" })
+                @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.Address2, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Address2, new { @class = "form-control", @alt = "Address Line 2" })
+                @Html.ValidationMessageFor(m => m.Address2, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.City, new { @class = "col-md-2 control-label" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.City, new { @class = "form-control", @alt = "City" })
+                @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(m => m.State, new { @class = "col-md-1 control-label" })
+            <div class="col-md-1">
+                @Html.TextBoxFor(m => m.State, new { @class = "form-control", @alt = "State" })
+                @Html.ValidationMessageFor(m => m.State, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(m => m.Zip, new { @class = "col-md-2 control-label" })
+            <div class="col-md-2">
+                @Html.TextBoxFor(m => m.Zip, new { @class = "form-control", @alt = "Zip Code" })
+                @Html.ValidationMessageFor(m => m.Zip, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @alt = "Email" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @alt = "Phone Number" })
+                @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.Background, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(m => m.Background, new { @class = "form-control textarea-height", @alt = "Candidate Background" })
+                @Html.ValidationMessageFor(m => m.Background, "", new { @class = "text-danger" })
+            </div>
+        </div>        
+        <div class="row">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-primary" value="Submit" />
+            </div>
+        </div>
+    </div>
+}
+

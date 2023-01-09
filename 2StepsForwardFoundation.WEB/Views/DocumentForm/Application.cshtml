@@ -1,0 +1,84 @@
+﻿@using _2StepsForwardFoundation.Models
+@model Application
+
+@{
+    ViewBag.Title = "Application";
+}
+<h2>@ViewBag.Title</h2>
+
+<p>
+    <div style="text-decoration:underline">Applicants must be able to provide:</div>
+    <div class="tab">- 1 month's pay stubs for all employed members of the household</div>
+    <div class="tab">- A valid photo ID</div>
+    <div class="tab">- The bill they need assistance paying</div>
+    <br />
+    All assistance is paid directly to the business owed. All applicants must meet with a staff member in person to provide the above requirements.
+    <br /><br />
+    <div style="text-decoration:underline">Eligibility</div>
+    <div class="tab">Not receiving government assistance</div>
+    <div class="tab">At least one member of the household currently employed</div>
+    <div class="tab">Under 200% above poverty line</div>
+</p>
+<br />
+<p>Please complete application to be reviewed for assistance. Thanks!</p>
+@{  var applicationSuccess = TempData["ApplicationSuccess"];
+    if (applicationSuccess != null)
+    {
+        <div class="alert alert-success">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>@applicationSuccess</strong>
+        </div>
+    }
+}
+<button type="button" id="startApplicationButton">Start Online</button>
+<div id="applicationForm" style="display: none;">
+    @Html.Partial("_ApplicationForm", Model)
+</div>
+<div id="divLoading">
+    <img class="ajax-loader" src="~/Content/Images/ajax-loader.gif" alt="Loading, please wait" />
+</div>
+
+@Scripts.Render("~/bundles/jqueryunobtrusive")
+<script type="text/javascript">
+    $(function () {
+        var startApplicationButton = $("#startApplicationButton");
+        startApplicationButton.on("click", function (e) {
+            $(".alert").alert("close");
+            startApplicationButton.fadeOut("fast", function () {
+                $("#applicationForm").fadeIn("slow");
+            })
+        });
+    });
+
+    function onBegin() {
+        $("#applicationForm").hide();
+        $("#divLoading").show();
+    };
+    function onSuccess(result) {
+        $("#applicationForm").show();
+        $("#divLoading").hide();
+
+        if (result.redirectTo) {
+            window.location.href = result.redirectTo;
+        } else {
+            $("#applicationForm").html(result);
+        }
+    };
+
+    $("#AppliedBefore").on("change", function () {
+        if (this.value == 'true')
+            $("#assistanceProvidedContainer").show();
+        else {
+            $("#assistanceProvidedContainer").hide();
+            $("#AssistanceProvided").val(null);
+        }
+    });
+
+    $("#GovernmentAssistance").on("change", function () {
+        if (this.value == 'true')
+            $("#governmentAssistanceDetailsContainer").show();
+        else
+            $("#governmentAssistanceDetailsContainer").hide();
+    });
+</script>
+

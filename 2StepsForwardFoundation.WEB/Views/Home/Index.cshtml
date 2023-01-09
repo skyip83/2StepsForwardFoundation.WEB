@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+@section SlickCss {
+    @Styles.Render("~/Content/slickcss")
+}
+@section SlickScript {
+    @Scripts.Render("~/bundles/slick")
+}
+
+<div class="jumbotron" style="padding-top:10px;">
+    <div class="col-md-offset-3">
+        <img class="img-responsive" src="@Url.Content("~/Content/Images/Final 2 Steps Forward Logo.png")" height="306" width="487" />
+    </div>
+    <h3>OUR STORY</h3>
+    <p class="col-sm-offset-1"><strong>Vision: </strong>To prevent poverty and promote long term financial independence.<br />
+    To ensure 90% of all donations go directly toward providing financial grants.</p>
+    <p class="col-sm-offset-1"><strong>Mission: </strong>Our mission is to provide financial assistance to working families who have been presented with an unforeseen financial crisis and provide educational resources which will enable them to be financially independent.</p>
+    @*<div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="" style="height:300px; width:100%"></iframe>
+    </div>*@
+    <div class="row">
+        <div class="col-md-12">
+            <p>
+                “Near poor” and “paycheck to paycheck” are common terms used to describe those who live just above the poverty line.
+                While there are many government agencies and non-profit groups to assist those below the poverty line, there are very few that assist those who are above it, and in danger of slipping below.
+                2 Steps Forward Foundation is a non-profit foundation dedicated to providing assistance to people who fall into this category, through individual grants and/or referrals to other non-profit organizations.
+                The foundation provides financial assistance to prevent poverty in the short term, and promote financial independence.
+                Individual grants fill the financial gap during crisis, and referrals to programs to address the root cause to promote long term stability.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="carousel-photos">
+                <div><img data-lazy="/Content/Images/Photos/2 Steps Group Photo.jpg" alt="2 Steps Forward Group Photo" height="300" width="670"></div>
+                <div><img data-lazy="/Content/Images/Photos/DSCF0490.jpg" alt="2 Steps Forward Photo 1" height="300" width="401"></div>
+                <div><img data-lazy="/Content/Images/Photos/DSCF0491.jpg" alt="2 Steps Forward Photo 2" height="300" width="223"></div>
+                <div><img data-lazy="/Content/Images/Photos/DSCF0508.jpg" alt="2 Steps Forward Photo 3" height="300" width="401"></div>
+                <div><img data-lazy="/Content/Images/Photos/DSCF0518.jpg" alt="2 Steps Forward Photo 4" height="300" width="401"></div>
+                <div><img data-lazy="/Content/Images/Photos/DSCF0520.jpg" alt="2 Steps Forward Photo 5" height="300" width="401"></div>
+                <div><img data-lazy="/Content/Images/Photos/DSCF0522.jpg" alt="2 Steps Forward Photo 6" height="300" width="401"></div>
+                <div><img data-lazy="/Content/Images/Photos/DSCF0525.jpg" alt="2 Steps Forward Photo 7" height="300" width="401"></div>
+                <div><img data-lazy="/Content/Images/Photos/DSCF0526.jpg" alt="2 Steps Forward Photo 8" height="300" width="401"></div>
+                <div><img data-lazy="/Content/Images/Photos/stream cleanup 1.jpg" alt="2 Steps Forward Photo 9" height="300" width="225"></div>
+                <div><img data-lazy="/Content/Images/Photos/stream cleanup 2.jpg" alt="2 Steps Forward Photo 10" height="300" width="300"></div>
+                <div><img data-lazy="/Content/Images/Photos/stream cleanup 3.jpg" alt="2 Steps Forward Photo 11" height="300" width="300"></div>
+                <div><img data-lazy="/Content/Images/Photos/stream cleanup 4.jpg" alt="2 Steps Forward Photo 12" height="300" width="300"></div>
+                <div><img data-lazy="/Content/Images/Photos/stream cleanup 5.jpg" alt="2 Steps Forward Photo 13" height="300" width="165"></div>
+                <div><img data-lazy="/Content/Images/Photos/stream cleanup 6.jpg" alt="2 Steps Forward Photo 14" height="300" width="165"></div>
+                <div><img data-lazy="/Content/Images/Photos/stream cleanup 7.jpg" alt="2 Steps Forward Photo 15" height="300" width="165"></div>
+                <div><img data-lazy="/Content/Images/Photos/stream cleanup 8.jpg" alt="2 Steps Forward Photo 16" height="300" width="225"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p>
+                <strong>We accept donations through PayPal. Please click the button below to proceed.</strong>
+            </p>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="DZHBJ9G64HEKG">
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p>
+                <strong>Legal Structure</strong><br />
+                2 Steps Forward Foundation is incorporated in the state of North Carolina. 
+                It is a tax-exempt category 501(c)(3) corporation.
+            </p>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/Home/Index")
+<script type="text/javascript">
+    $(function () {
+        IndexViewModel.init();
+    });
+</script>

@@ -1,0 +1,60 @@
+﻿@using _2StepsForwardFoundation.Models
+@model Volunteer
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>2 Steps Forward - Volunteer Form</title>
+</head>
+<body>
+    <strong>Volunteer</strong>
+    <table>
+        <tr class="float-left">
+            <th>
+                Name (First Middle Last): @Model.FirstName @Model.MiddleName @Model.LastName
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                Street Address Line 1: @Model.Address
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                Street Address Line 2: @Model.Address2
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                City: @Model.City
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                State: @Model.State
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                Zip Code: @Model.Zip
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                E-Mail: @Model.Email
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                Home/Cell Phone: @Model.PhoneNumber
+            </th>
+        </tr>
+        <tr class="float-left">
+            <th>
+                Background: @Model.Background
+            </th>
+        </tr>
+    </table>
+</body>
+</html>  

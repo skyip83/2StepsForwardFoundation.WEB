@@ -1,0 +1,44 @@
+﻿@using _2StepsForwardFoundation.Models
+@model Email
+
+@{
+    var emailError = TempData["EmailError"];
+    if (emailError != null)
+    {
+        <div class="alert alert-danger">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>@emailError</strong>
+        </div>
+    }
+}
+@using (Ajax.BeginForm("SendEmail", "Email", null, new AjaxOptions { HttpMethod = "Post", OnBegin = "onBegin", OnSuccess = "onSuccess" }, new { @id = "emailForm" }))
+{
+    <div class="form-group">
+        <div class="row">
+            @Html.LabelFor(m => m.Sender, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Sender, new { @class = "form-control", @alt = "Sender" })
+                @Html.ValidationMessageFor(m => m.Sender, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.Subject, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Subject, new { @class = "form-control", @alt = "Subject" })
+                @Html.ValidationMessageFor(m => m.Subject, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.Message, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(m => m.Message, new { @class = "form-control", @alt = "Message" })
+                @Html.ValidationMessageFor(m => m.Message, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="submitEmailButton" type="submit" class="btn btn-primary" value="Submit" />
+            </div>
+        </div>
+    </div>
+}

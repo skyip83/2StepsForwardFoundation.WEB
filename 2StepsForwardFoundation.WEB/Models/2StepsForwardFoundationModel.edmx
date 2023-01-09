@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="StepsForwardFoundationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ApplicationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Address2" Type="varchar" MaxLength="100" />
+          <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Zip" Type="varchar" MaxLength="10" />
+          <Property Name="Email" Type="varchar" MaxLength="320" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PlaceOfEmployment" Type="varchar" MaxLength="100" />
+          <Property Name="TotalIncome" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="AmountNeeded" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="AppliedBefore" Type="bit" Nullable="false" />
+          <Property Name="AssistanceProvided" Type="bit" />
+          <Property Name="BillRequestingPayment" Type="varchar(max)" />
+          <Property Name="GovernmentAssistance" Type="bit" Nullable="false" />
+          <Property Name="GovernmentAssistanceDetails" Type="varchar(max)" />
+          <Property Name="OtherAssistanceAppliedDetails" Type="varchar(max)" />
+          <Property Name="HouseholdMemberNameAge1" Type="varchar" MaxLength="100" />
+          <Property Name="HouseholdMemberNameAge2" Type="varchar" MaxLength="100" />
+          <Property Name="HouseholdMemberNameAge3" Type="varchar" MaxLength="100" />
+          <Property Name="HouseholdMemberNameAge4" Type="varchar" MaxLength="100" />
+          <Property Name="HouseholdMemberNameAge5" Type="varchar" MaxLength="100" />
+          <Property Name="HouseholdMemberNameAge6" Type="varchar" MaxLength="100" />
+          <Property Name="AssistanceNeedExplanation" Type="varchar(max)" Nullable="false" />
+          <Property Name="OtherFactorsToReview" Type="varchar(max)" />
+          <Property Name="CreationDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="EmailId" />
+          </Key>
+          <Property Name="EmailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sender" Type="varchar" MaxLength="320" Nullable="false" />
+          <Property Name="Recipient" Type="varchar" MaxLength="320" Nullable="false" />
+          <Property Name="Subject" Type="varchar(max)" />
+          <Property Name="Message" Type="varchar(max)" Nullable="false" />
+          <Property Name="CreationDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailingList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="320" Nullable="false" />
+          <Property Name="CreationDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Volunteer">
+          <Key>
+            <PropertyRef Name="VolunteerId" />
+          </Key>
+          <Property Name="VolunteerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Address2" Type="varchar" MaxLength="100" />
+          <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Zip" Type="varchar" MaxLength="10" />
+          <Property Name="Email" Type="varchar" MaxLength="320" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Background" Type="varchar(max)" />
+          <Property Name="CreationDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Function Name="usp_ApplicationMaintenance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FirstName" Type="varchar" Mode="In" />
+          <Parameter Name="MiddleName" Type="varchar" Mode="In" />
+          <Parameter Name="LastName" Type="varchar" Mode="In" />
+          <Parameter Name="Address" Type="varchar" Mode="In" />
+          <Parameter Name="Address2" Type="varchar" Mode="In" />
+          <Parameter Name="City" Type="varchar" Mode="In" />
+          <Parameter Name="State" Type="varchar" Mode="In" />
+          <Parameter Name="Zip" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
+          <Parameter Name="PlaceOfEmployment" Type="varchar" Mode="In" />
+          <Parameter Name="TotalIncome" Type="decimal" Mode="In" />
+          <Parameter Name="AmountNeeded" Type="decimal" Mode="In" />
+          <Parameter Name="AppliedBefore" Type="bit" Mode="In" />
+          <Parameter Name="AssistanceProvided" Type="bit" Mode="In" />
+          <Parameter Name="BillRequestingPayment" Type="varchar(max)" Mode="In" />
+          <Parameter Name="GovernmentAssistance" Type="bit" Mode="In" />
+          <Parameter Name="GovernmentAssistanceDetails" Type="varchar(max)" Mode="In" />
+          <Parameter Name="OtherAssistanceAppliedDetails" Type="varchar(max)" Mode="In" />
+          <Parameter Name="HouseholdMemberNameAge1" Type="varchar" Mode="In" />
+          <Parameter Name="HouseholdMemberNameAge2" Type="varchar" Mode="In" />
+          <Parameter Name="HouseholdMemberNameAge3" Type="varchar" Mode="In" />
+          <Parameter Name="HouseholdMemberNameAge4" Type="varchar" Mode="In" />
+          <Parameter Name="HouseholdMemberNameAge5" Type="varchar" Mode="In" />
+          <Parameter Name="HouseholdMemberNameAge6" Type="varchar" Mode="In" />
+          <Parameter Name="AssistanceNeedExplanation" Type="varchar(max)" Mode="In" />
+          <Parameter Name="OtherFactorsToReview" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Action" Type="char" Mode="In" />
+        </Function>
+        <Function Name="usp_CreateEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Sender" Type="varchar" Mode="In" />
+          <Parameter Name="Recipient" Type="varchar" Mode="In" />
+          <Parameter Name="Subject" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Message" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="usp_EmailingListMaintenance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Action" Type="char" Mode="In" />
+        </Function>
+        <Function Name="usp_VolunteerMaintenance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FirstName" Type="varchar" Mode="In" />
+          <Parameter Name="MiddleName" Type="varchar" Mode="In" />
+          <Parameter Name="LastName" Type="varchar" Mode="In" />
+          <Parameter Name="Address" Type="varchar" Mode="In" />
+          <Parameter Name="Address2" Type="varchar" Mode="In" />
+          <Parameter Name="City" Type="varchar" Mode="In" />
+          <Parameter Name="State" Type="varchar" Mode="In" />
+          <Parameter Name="Zip" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
+          <Parameter Name="Background" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Action" Type="char" Mode="In" />
+        </Function>
+        <EntityContainer Name="StepsForwardFoundationModelStoreContainer">
+          <EntitySet Name="Application" EntityType="Self.Application" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Email" EntityType="Self.Email" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailingList" EntityType="Self.EmailingList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Volunteer" EntityType="Self.Volunteer" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StepsForwardFoundationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="usp_CreateEmail">
+            <Parameter Name="Sender" Mode="In" Type="String" />
+            <Parameter Name="Recipient" Mode="In" Type="String" />
+            <Parameter Name="Subject" Mode="In" Type="String" />
+            <Parameter Name="Message" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_EmailingListMaintenance">
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ApplicationMaintenance">
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="MiddleName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="Address2" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="State" Mode="In" Type="String" />
+            <Parameter Name="Zip" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="PlaceOfEmployment" Mode="In" Type="String" />
+            <Parameter Name="TotalIncome" Mode="In" Type="Decimal" />
+            <Parameter Name="AmountNeeded" Mode="In" Type="Decimal" />
+            <Parameter Name="AppliedBefore" Mode="In" Type="Boolean" />
+            <Parameter Name="AssistanceProvided" Mode="In" Type="Boolean" />
+            <Parameter Name="BillRequestingPayment" Mode="In" Type="String" />
+            <Parameter Name="GovernmentAssistance" Mode="In" Type="Boolean" />
+            <Parameter Name="GovernmentAssistanceDetails" Mode="In" Type="String" />
+            <Parameter Name="OtherAssistanceAppliedDetails" Mode="In" Type="String" />
+            <Parameter Name="HouseholdMemberNameAge1" Mode="In" Type="String" />
+            <Parameter Name="HouseholdMemberNameAge2" Mode="In" Type="String" />
+            <Parameter Name="HouseholdMemberNameAge3" Mode="In" Type="String" />
+            <Parameter Name="HouseholdMemberNameAge4" Mode="In" Type="String" />
+            <Parameter Name="HouseholdMemberNameAge5" Mode="In" Type="String" />
+            <Parameter Name="HouseholdMemberNameAge6" Mode="In" Type="String" />
+            <Parameter Name="AssistanceNeedExplanation" Mode="In" Type="String" />
+            <Parameter Name="OtherFactorsToReview" Mode="In" Type="String" />
+            <Parameter Name="Action" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Volunteers" EntityType="StepsForwardFoundationModel.Volunteer" />
+          <FunctionImport Name="usp_VolunteerMaintenance">
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="MiddleName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="Address2" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="State" Mode="In" Type="String" />
+            <Parameter Name="Zip" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="Background" Mode="In" Type="String" />
+            <Parameter Name="Action" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Emails" EntityType="StepsForwardFoundationModel.Email" />
+          <EntitySet Name="EmailingLists" EntityType="StepsForwardFoundationModel.EmailingList" />
+          <EntitySet Name="Applications" EntityType="StepsForwardFoundationModel.Application" />
+        </EntityContainer>
+        <EntityType Name="Volunteer">
+          <Key>
+            <PropertyRef Name="VolunteerId" />
+          </Key>
+          <Property Name="VolunteerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Address2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="320" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Background" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="EmailId" />
+          </Key>
+          <Property Name="EmailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sender" Type="String" Nullable="false" MaxLength="320" FixedLength="false" Unicode="false" />
+          <Property Name="Recipient" Type="String" Nullable="false" MaxLength="320" FixedLength="false" Unicode="false" />
+          <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="EmailingList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="320" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Address2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="320" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PlaceOfEmployment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TotalIncome" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="AmountNeeded" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="AppliedBefore" Type="Boolean" Nullable="false" />
+          <Property Name="AssistanceProvided" Type="Boolean" />
+          <Property Name="BillRequestingPayment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="GovernmentAssistance" Type="Boolean" Nullable="false" />
+          <Property Name="GovernmentAssistanceDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OtherAssistanceAppliedDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="HouseholdMemberNameAge1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="HouseholdMemberNameAge2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="HouseholdMemberNameAge3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="HouseholdMemberNameAge4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="HouseholdMemberNameAge5" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="HouseholdMemberNameAge6" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AssistanceNeedExplanation" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OtherFactorsToReview" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StepsForwardFoundationModelStoreContainer" CdmEntityContainer="Entities">
+          <FunctionImportMapping FunctionImportName="usp_CreateEmail" FunctionName="StepsForwardFoundationModel.Store.usp_CreateEmail" />
+          <FunctionImportMapping FunctionImportName="usp_EmailingListMaintenance" FunctionName="StepsForwardFoundationModel.Store.usp_EmailingListMaintenance" />
+          <FunctionImportMapping FunctionImportName="usp_ApplicationMaintenance" FunctionName="StepsForwardFoundationModel.Store.usp_ApplicationMaintenance" />
+          <EntitySetMapping Name="Volunteers">
+            <EntityTypeMapping TypeName="StepsForwardFoundationModel.Volunteer">
+              <MappingFragment StoreEntitySet="Volunteer">
+                <ScalarProperty Name="CreationDateTime" ColumnName="CreationDateTime" />
+                <ScalarProperty Name="Background" ColumnName="Background" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="VolunteerId" ColumnName="VolunteerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_VolunteerMaintenance" FunctionName="StepsForwardFoundationModel.Store.usp_VolunteerMaintenance" />
+          <EntitySetMapping Name="Emails">
+            <EntityTypeMapping TypeName="StepsForwardFoundationModel.Email">
+              <MappingFragment StoreEntitySet="Email">
+                <ScalarProperty Name="CreationDateTime" ColumnName="CreationDateTime" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Recipient" ColumnName="Recipient" />
+                <ScalarProperty Name="Sender" ColumnName="Sender" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailingLists">
+            <EntityTypeMapping TypeName="StepsForwardFoundationModel.EmailingList">
+              <MappingFragment StoreEntitySet="EmailingList">
+                <ScalarProperty Name="CreationDateTime" ColumnName="CreationDateTime" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Applications">
+            <EntityTypeMapping TypeName="StepsForwardFoundationModel.Application">
+              <MappingFragment StoreEntitySet="Application">
+                <ScalarProperty Name="CreationDateTime" ColumnName="CreationDateTime" />
+                <ScalarProperty Name="OtherFactorsToReview" ColumnName="OtherFactorsToReview" />
+                <ScalarProperty Name="AssistanceNeedExplanation" ColumnName="AssistanceNeedExplanation" />
+                <ScalarProperty Name="HouseholdMemberNameAge6" ColumnName="HouseholdMemberNameAge6" />
+                <ScalarProperty Name="HouseholdMemberNameAge5" ColumnName="HouseholdMemberNameAge5" />
+                <ScalarProperty Name="HouseholdMemberNameAge4" ColumnName="HouseholdMemberNameAge4" />
+                <ScalarProperty Name="HouseholdMemberNameAge3" ColumnName="HouseholdMemberNameAge3" />
+                <ScalarProperty Name="HouseholdMemberNameAge2" ColumnName="HouseholdMemberNameAge2" />
+                <ScalarProperty Name="HouseholdMemberNameAge1" ColumnName="HouseholdMemberNameAge1" />
+                <ScalarProperty Name="OtherAssistanceAppliedDetails" ColumnName="OtherAssistanceAppliedDetails" />
+                <ScalarProperty Name="GovernmentAssistanceDetails" ColumnName="GovernmentAssistanceDetails" />
+                <ScalarProperty Name="GovernmentAssistance" ColumnName="GovernmentAssistance" />
+                <ScalarProperty Name="BillRequestingPayment" ColumnName="BillRequestingPayment" />
+                <ScalarProperty Name="AssistanceProvided" ColumnName="AssistanceProvided" />
+                <ScalarProperty Name="AppliedBefore" ColumnName="AppliedBefore" />
+                <ScalarProperty Name="AmountNeeded" ColumnName="AmountNeeded" />
+                <ScalarProperty Name="TotalIncome" ColumnName="TotalIncome" />
+                <ScalarProperty Name="PlaceOfEmployment" ColumnName="PlaceOfEmployment" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
